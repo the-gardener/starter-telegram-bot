@@ -65,7 +65,7 @@ const replyToCommand = async (ctx: any) => {
   return null;
 };
 
-// bot.command("start", replyToCommand);
+bot.command("start", replyToCommand);
 bot.on("message", replyToCommand);
 
 // Start the server
