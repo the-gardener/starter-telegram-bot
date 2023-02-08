@@ -75,8 +75,20 @@ bot.on("message", replyToCommand);
   app.use(express.json());
   app.use(webhookCallback(bot, "express"));
   const url = `${process.env.WEBHOOK_URL}`;
-  bot.api.setWebhook(url); 
-
+  bot.api.setWebhook(url);
+  app.post('/', async(req, res) => {
+    try {
+      res.status(200).send('Your voice heard.');
+    } catch (error) {
+      console.log('error:::::' + error);
+      res.status(500).send(error);
+    }
+  });
+  app.get('/', async(req, res) => {
+    res.status(200).send({
+      message: 'Hello from Maria Ozawa.',
+    })
+  });
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
     console.log(`Bot listening on port ${PORT}`);
