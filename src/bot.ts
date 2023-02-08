@@ -16,7 +16,9 @@ const mentionedCmd = '/maria';
 const bot = new Bot(tgKey);
 
 // Handle the /hey command to greet the user
-bot.command("hey", (ctx) => ctx.reply(`Hey ${ctx.from?.username}`));
+bot.command("hey", (ctx) => {
+  ctx.reply(`Hey ${ctx.update.message?.from.first_name}. How is it going?`);
+});
 
 // Suggest commands in the menu
 bot.api.setMyCommands([
@@ -34,7 +36,7 @@ const refusedMsg = 'Mời quý anh chị chim kút!';
 
 const replyToCommand = async (ctx: any) => {
   const msg = ctx.update.message;
-  console.log('calling replyWithIntro--------------', JSON.stringify(msg.text));
+  console.log('calling replyToCommand--------------', JSON.stringify(msg.text));
   if (!msg.from) {
     ctx.reply(refusedMsg, {
       parse_mode: "HTML",
