@@ -69,13 +69,13 @@ const replyToCommand = async (ctx: any) => {
 bot.on("message", replyToCommand);
 
 // Start the server
-/* if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   // Use Webhooks for the production server
   const app = express();
   app.use(express.json());
   app.use(webhookCallback(bot, "express"));
-  // const url = `${process.env.WEBHOOK_URL}`;
-  // bot.api.setWebhook(url);
+  const url = `${process.env.WEBHOOK_URL}`;
+  bot.api.setWebhook(url);
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
     console.log(`Bot listening on port ${PORT}`);
@@ -83,5 +83,4 @@ bot.on("message", replyToCommand);
 } else {
   // Use Long Polling for development
   bot.start();
-} */
-bot.start();
+}
